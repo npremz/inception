@@ -7,4 +7,4 @@ RUN mkdir -p /var/run/nginx
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 RUN chmod 755 /var/www/html
 RUN chown -R www-data:www-data /var/www/html
-CMD [ "nginx", "-g", "daemon off;"]
+ENTRYPOINT [ "nginx", "-g", "daemon off;"]

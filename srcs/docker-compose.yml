@@ -59,7 +59,7 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/zak/npremont/data/mariadb'
+      device: '/home/npremont/data/mariadb'
 
 networks:
   inception:

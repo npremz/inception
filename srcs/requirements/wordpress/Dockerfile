@@ -22,4 +22,4 @@ RUN		mkdir /run/php
 RUN		chown -R www-data:www-data /run/php
 
 # launch php-fpm
-RUN		/usr/sbin/php-fpm7.3 -F 
+ENTRYPOINT	["/usr/sbin/php-fpm7.3", "-F"] 
