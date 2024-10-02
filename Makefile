@@ -1,15 +1,21 @@
 all:
-	@docker compose -f srcs/docker-compose.yml up -d --build
+	@mkdir -p data/mariadb
+	@mkdir -p data/wordpress
+	@docker-compose -f srcs/docker-compose.yml build
+	@docker-compose -f srcs/docker-compose.yml up -d
 
 down:
-	@docker compose -f srcs/docker-compose.yml down
+	@docker-compose -f srcs/docker-compose.yml down
+
+logs:
+	@docker-compose -f srcs/docker-compose.yml logs -f
 
 re:
 	@echo "Cleaning..."
 	@make down
 	@make clean
 	@echo "Rebuilding..."
-	@docker compose -f srcs/docker-compose.yml up -d --build
+	@make all
 
 clean:
 	@docker stop $$(docker ps -qa);\

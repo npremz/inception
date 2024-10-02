@@ -1,5 +1,4 @@
 FROM debian:buster
-RUN echo "waf"
 RUN apt update --allow-releaseinfo-change -y
 RUN apt upgrade -y
 RUN apt-get install mariadb-server -y

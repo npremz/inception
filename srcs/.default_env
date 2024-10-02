@@ -1,0 +1,6 @@
+SQL_HOSTNAME=mariadb
+SQL_DATABASE=wordpress
+SQL_USER=npremont
+SQL_PASSWORD=waf123
+SQL_ROOT_PASSWORD=root4life
+DOMAIN_NAME=npremont.42.fr
