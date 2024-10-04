@@ -1,8 +1,16 @@
 FROM debian:buster
-RUN apt update --allow-releaseinfo-change -y
-RUN apt upgrade -y
-RUN apt-get install mariadb-server -y
-COPY conf/50-server.cnf /etc/mysql/maria.conf.d/50-server.cnf
-COPY tools/init-db.sh ./init-db.sh
-ENTRYPOINT ["bash", "init-db.sh"]
 
+RUN apt-get update && apt-get install -y mariadb-server mariadb-client
+
+RUN mysql_install_db \
+	--user=mysql \
+	--datadir=/var/lib/mysql \
+	--auth-root-authentication-method=normal \
+	--skip-test-db
+
+RUN sed -i 's/bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
+
+COPY tools/start.sh /start.sh
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]

@@ -10,18 +10,18 @@ down:
 logs:
 	@docker-compose -f srcs/docker-compose.yml logs -f
 
-re:
-	@echo "Cleaning..."
-	@make down
-	@make clean
-	@echo "Rebuilding..."
-	@make all
-
 clean:
-	@docker stop $$(docker ps -qa);\
-	docker rm $$(docker ps -qa);\
-	docker rmi -f $$(docker images -qa);\
-	docker volume rm $$(docker volume ls -q);\
-	docker network rm $$(docker network ls -q);\
+	make down
+	docker container prune --force
 
-.PHONY: all re down clean
+fclean:
+	make clean
+	sudo rm -rf /home/npremont/inception/data
+	docker system prune --all --force
+	docker volume rm /home/npremont/inception/data/mariadb /home/npremont/inception/wordpress
+
+re:
+	make fclean 
+	make all
+
+.PHONY: all re down clean fclean logs
