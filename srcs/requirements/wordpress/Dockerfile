@@ -1,11 +1,11 @@
-FROM		debian:buster
+FROM		debian:bullseye
 RUN		apt update -y
 RUN		apt upgrade -y
 
 # wordpress & php set up
 RUN		apt-get install wget -y
-RUN		apt-get install php7.3 php-fpm php-mysql mariadb-client -y
-COPY		conf/php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
+RUN		apt-get install php7.4 php-fpm php-mysql mariadb-client -y
+COPY		conf/php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
 
 # wordpress config by wp-cli 
 RUN		wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar

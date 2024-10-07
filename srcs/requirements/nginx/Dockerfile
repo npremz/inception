@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 RUN apt update -y && apt upgrade -y
 RUN apt install nginx vim curl openssl -y
 RUN mkdir -p /etc/nginx/ssl

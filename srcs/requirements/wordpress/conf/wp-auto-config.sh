@@ -2,7 +2,7 @@
 
 if [ ! -f "/var/www/html/wp-config.php" ]; then
 
-	mkdir 
+	mkdir -p /run/php 
 	cd /var/www/wordpress
 	wp core download --allow-root
 	
@@ -27,6 +27,6 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
 		--allow-root\
 		--role=editor\
 		--user_pass=$WP_USER_PASSWORD
-fi;
+fi
 
-php-fpm7.3 -F
+php-fpm7.4 -F
