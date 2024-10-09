@@ -23,5 +23,4 @@ EOF
 	killall mysqld 2> /dev/null
 fi
 
-service mysql start
-tail -f /dev/null
+mysqld_safe
